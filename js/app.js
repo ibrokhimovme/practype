@@ -21,7 +21,9 @@
 
 btn = document.getElementById("btn")
 words = document.getElementById("words")
+inputTexting = document.getElementById("input")
 chars = ['/', '.', ',', '!', '-', '"', "'"]
+texts = []
 
 btn.addEventListener("click", (e) => {
     inp = document.getElementById("textInp").value
@@ -35,6 +37,7 @@ btn.addEventListener("click", (e) => {
         word = inp.split(" ")
         for(let i = 0; i<word.length; i++){
             let father = document.createElement('div')
+            texts.push(word[i])
             father.className = "word"
             words.appendChild(father)
             console.log(word[i].length)
@@ -46,5 +49,24 @@ btn.addEventListener("click", (e) => {
             }
         }
     }
-    console.log(inp)
+})
+
+input = document.getElementById("input")
+count = []
+text = texts
+input.addEventListener("keydown", (e) => {
+    if(e.code == "Space"){
+        console.log(text[count.length] == e.target.value.split(" ")[count.length])
+        if(text[count.length] == e.target.value.split(" ")[count.length]){
+            count.push(e.target.value.split(" ")[count.length])
+        }
+        if(text[count.length] == text[-1]){
+            console.log("Siz to'gri bajardingiz!")
+            count.length = 0
+            e.target.value = ""
+            console.log(count)
+            console.log(e.target.value)
+        }
+        console.log(count)
+    }
 })
